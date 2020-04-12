@@ -87,8 +87,10 @@
   user:
     name: "{{ nexus_os_user }}"
     group: "{{ nexus_os_group }}"
-    home: "{{ nexus_os_user_home_dir }}"
-    shell: "/bin/bash"
+    system: yes
+    shell: "/sbin/nologin"
+    comment: "nexus nologin User"
+    createhome: no
     state: present
 
 - name: Ensure Nexus installation directory exists
@@ -272,14 +274,6 @@
     dest: "{{ nexus_installation_dir }}/nexus-latest/bin/nexus.vmoptions"
     regexp: "^-Djava.io.tmpdir=.*"
     line: "-Djava.io.tmpdir={{ nexus_tmp_dir }}"
-  notify:
-    - nexus-service-stop
-
-- name: Set NEXUS_HOME for the service user
-  lineinfile:
-    dest: "{{ nexus_os_user_home_dir }}/.bashrc"
-    regexp: "^export NEXUS_HOME=.*"
-    line: "export NEXUS_HOME={{ nexus_installation_dir }}/nexus-latest"
   notify:
     - nexus-service-stop
 
