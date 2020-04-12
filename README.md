@@ -171,12 +171,6 @@ your own proxy)
     nexus_os_user: 'nexus'
 ```
 
-User and group used to own the nexus files and run the service, those will be created by the role if absent.
-
-```yaml
-    nexus_os_user_home_dir: '/home/nexus'
-```
-
 Allow to change the nexus user default home directory
 
 ### Nexus instance directories
