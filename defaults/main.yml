@@ -77,7 +77,7 @@ nexus_public_hostname: 'nexus.vm'
 nexus_public_scheme: https
 
 # How should the role access the API for provisionning
-nexus_api_hostname: localhost
+nexus_api_hostname: '{{ nexus_application_host }}'
 nexus_api_scheme: http
 nexus_api_validate_certs: "{{ nexus_api_scheme == 'https' }}"
 nexus_api_context_path: "{{ nexus_default_context_path }}"
